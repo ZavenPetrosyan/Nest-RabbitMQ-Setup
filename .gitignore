@@ -1,0 +1,32 @@
+# Node modules
+**/node_modules/
+
+# Build outputs
+**/dist/
+
+# Environment variables
+**/.env
+**/.env.*
+
+# Logs
+logs/
+*.log
+**/logs/
+
+# Debugging files
+.nyc_output/
+coverage/
+*.tmp
+*.swp
+
+# IDE and OS-specific files
+.DS_Store
+.idea/
+.vscode/
+
+# Dependencies lock files (if you don't want to track these)
+# Uncomment the following if you want to ignore lock files.
+# **/package-lock.json
+
+# Docker files
+**/tmp/

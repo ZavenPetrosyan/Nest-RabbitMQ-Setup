@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2020",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "outDir": "./dist",          // Ensures all compiled files go into "dist"
+    "rootDir": "./src",          // Keeps source files within "src"
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*"],       // Include all TypeScript files from "src"
+  "exclude": ["node_modules", "dist"] // Exclude unnecessary files
+}
