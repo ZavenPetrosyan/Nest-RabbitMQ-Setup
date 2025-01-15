@@ -1,39 +1,5 @@
 version: '3.8'
-
 services:
-  service-a:
-    build:
-      context: ./service-a
-    ports:
-      - "3000:3000"
-      - "9229:9229"
-    volumes:
-      - ./service-a:/app
-      - /app/node_modules
-    env_file:
-      - ./service-a/.env
-    command: npm run start:debug
-    depends_on:
-      - mongo
-      - redis
-      - rabbitmq
-
-  service-b:
-    build:
-      context: ./service-b
-    ports:
-      - "3001:3001"
-    volumes:
-      - ./service-b:/app
-      - /app/node_modules
-    env_file:
-      - ./service-b/.env
-    command: npm run start:debug
-    depends_on:
-      - mongo
-      - redis
-      - rabbitmq
-
   mongo:
     image: mongo:latest
     container_name: mongo
@@ -75,6 +41,49 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  service-a:
+    build:
+      context: ./service-a
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    volumes:
+      - ./service-a:/app
+      - /app/node_modules
+    env_file:
+      - ./service-a/.env
+    environment:
+      - NODE_ENV=dev
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    command: npm run start:debug
+
+  service-b:
+    build:
+      context: ./service-b
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./service-b:/app
+      - /app/node_modules
+    env_file:
+      - ./service-b/.env
+    environment:
+      - NODE_ENV=dev
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    command: npm run start:debug
 
 volumes:
   mongo_data:

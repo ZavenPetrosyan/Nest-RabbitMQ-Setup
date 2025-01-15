@@ -1,29 +1,3 @@
-// import * as dotenv from 'dotenv';
-// import { NestFactory } from '@nestjs/core';
-// import { AppModule } from './app.module';
-// import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-
-// async function bootstrap() {
-//   dotenv.config();
-//   console.log('Loaded Environment Variables:', process.env);
-
-//   const app = await NestFactory.create(AppModule);
-
-//   app.connectMicroservice<MicroserviceOptions>({
-//     transport: Transport.RMQ,
-//     options: {
-//       urls: [process.env.RABBITMQ_URI || 'amqp://localhost'],
-//       queue: 'events_queue', // Queue name must match Service-A's queue
-//       queueOptions: { durable: true },
-//     },
-//   });
-
-//   console.log('Connecting to RabbitMQ...');
-//   await app.startAllMicroservices();
-//   console.log('Service-B connected to RabbitMQ.');
-// }
-// bootstrap();
-
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
