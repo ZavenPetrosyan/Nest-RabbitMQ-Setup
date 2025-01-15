@@ -76,8 +76,8 @@
    - Node.js (v18 or higher)
 2. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone git@github.com:ZavenPetrosyan/Nest-RabbitMQ-Setup.git
+   cd Nest-RabbitMQ-Setup
 3. Ensure you have the .env files properly configured for both services
 
 ### 🐳 Running the Project with Docker Compose
