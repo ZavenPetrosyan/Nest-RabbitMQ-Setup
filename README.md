@@ -108,3 +108,24 @@
     ## 🧹 Cleanup
     1. To stop all services and remove containers, run: docker-compose down
     2. To remove the containers, volumes, and networks, run: docker-compose down --volumes
+
+
+### 🌱 Example .env Files
+1. Service-A .env File:
+
+    ENV=LOCAL
+    NODE_ENV=dev
+    MONGO_URI=mongodb://mongo:27017
+    MONGO_DB_NAME=service_a_db
+    REDIS_URI=redis://redis:6379
+    RABBITMQ_URI=amqp://<username>:<pass>@rabbitmq:5672
+    PORT=3000
+
+2. Service-B .env File:
+
+    ENV=LOCAL
+    NODE_ENV=dev
+    MONGO_URI=mongodb://mongo:27017
+    MONGO_DB_NAME=service_b_db
+    RABBITMQ_URI=amqp://<username>:<pass>@rabbitmq:5672
+    PORT=3001
