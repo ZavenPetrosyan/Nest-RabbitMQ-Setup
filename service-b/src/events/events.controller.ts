@@ -16,12 +16,16 @@ export class EventController implements OnModuleInit {
   }
 
   @MessagePattern('events.fetch')
-  async resumeDelayedPostModeration(
+  async handleEventFetch(
     @Payload() event: any,
     @Ctx() context: RmqContext,
   ): Promise<void> {
     const channel = context.getChannelRef();
     const originalMsg = context.getMessage();
+
+    console.log('Received event:', event);
+    console.log('Delivery Tag:', originalMsg.fields?.deliveryTag);
+    console.log('Consumer Tag:', originalMsg.fields?.consumerTag);
     try {
       console.log('Event received in Service-B:', event);
 
@@ -30,7 +34,8 @@ export class EventController implements OnModuleInit {
       console.log('Event processed successfully');
     } catch (err) {
       console.log(err);
-      return channel.reject(originalMsg, true);
+      channel.nack(originalMsg, false, true);
+      // return channel.reject(originalMsg, true);
     }
     channel.ack(originalMsg);
   }

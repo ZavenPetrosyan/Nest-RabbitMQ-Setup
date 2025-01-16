@@ -6,11 +6,7 @@ import { DatabaseModule } from '../database/database.module';
 import { MetricsModule } from '../metrics/metrics.module';
 
 @Module({
-  imports: [
-    MessagingModule,
-    DatabaseModule,
-    MetricsModule,
-  ],
+  imports: [MessagingModule, DatabaseModule, MetricsModule],
   controllers: [PublicApiController],
   providers: [PublicApiService],
 })

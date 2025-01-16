@@ -9,8 +9,16 @@ export class MetricsService {
 
   async logRequest(key: string, duration: number) {
     try {
-      const result = await this.redisClient.sendCommand(['TS.ADD', key, '*', `${duration}`]);
-      console.log(`Logged metrics successfully: ${key} = ${duration}ms`, result);
+      const result = await this.redisClient.sendCommand([
+        'TS.ADD',
+        key,
+        '*',
+        `${duration}`,
+      ]);
+      console.log(
+        `Logged metrics successfully: ${key} = ${duration}ms`,
+        result,
+      );
     } catch (error) {
       console.error('Failed to log metrics:', error.message, error.stack);
       throw new Error('Could not log metrics in Redis TimeSeries');
@@ -19,7 +27,12 @@ export class MetricsService {
 
   async getMetrics(key: string) {
     try {
-      const result = await this.redisClient.sendCommand(['TS.RANGE', key, '-', '+']);
+      const result = await this.redisClient.sendCommand([
+        'TS.RANGE',
+        key,
+        '-',
+        '+',
+      ]);
       console.log(`Retrieved metrics for key: ${key}`, result);
       return result;
     } catch (error) {
